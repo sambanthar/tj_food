@@ -1,0 +1,598 @@
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+  <div class="announcement-container">
+    <div class="announcement-badge">
+      <span class="pulse-dot"></span>
+      <span>FRESH LAUNCH</span>
+    </div>
+    <div class="announcement-text">
+      <span>🚚 All State Delivery Available</span>
+      <span class="separator">•</span>
+      <span>100% Pure & Homemade</span>
+      <span class="separator">•</span>
+      <span>No Chemicals & Preservatives</span>
+      <span class="separator">•</span>
+      <span class="heart-text">Please support my small dream ♥</span>
+    </div>
+    <a [href]="'https://wa.me/91' + phone + '?text=Hello%20TJ%20Homemade%20Products!%20Please%20send%20the%20price%20list.'" target="_blank" class="announcement-contact">
+      <span class="whatsapp-mini-icon">💬</span>
+      <span>WhatsApp: {{ phoneDisplay }}</span>
+    </a>
+  </div>
+</div>
+
+<!-- Main Header -->
+<header class="main-header">
+  <div class="header-container">
+    <a href="#home" class="brand-logo">
+      <div class="logo-icon-wrap">
+        <span class="brand-letters">TJ</span>
+        <span class="leaf-icon">🌿</span>
+      </div>
+      <div class="brand-text-group">
+        <span class="brand-name">HOMEMADE PRODUCTS</span>
+        <span class="brand-tagline">Naturally Homemade, Lovingly Made ♥</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="#home" class="nav-item">Home</a>
+      <a href="#products" class="nav-item">Products & Podis</a>
+      <a href="#posters" class="nav-item">Launch Posters</a>
+      <a href="#story" class="nav-item">Our Story</a>
+      <a href="#reviews" class="nav-item">Reviews</a>
+      <a href="#faqs" class="nav-item">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Order Tray Trigger -->
+      <button class="cart-btn" (click)="toggleCartModal()" [class.has-items]="cartTotalCount > 0" title="View Inquiry List">
+        <span class="cart-icon">🛍️</span>
+        <span class="cart-text">Inquiry List</span>
+        <span class="cart-count" *ngIf="cartTotalCount > 0">{{ cartTotalCount }}</span>
+      </button>
+
+      <!-- Direct WhatsApp Action -->
+      <button class="btn-whatsapp-header" (click)="orderGeneralViaWhatsApp()">
+        <span class="btn-wa-icon">💬</span>
+        <span>Order on WhatsApp</span>
+      </button>
+
+      <!-- Mobile Menu Hamburger -->
+      <button class="mobile-toggle" (click)="toggleMobileMenu()" [class.open]="isMobileMenuOpen" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div class="mobile-nav" [class.open]="isMobileMenuOpen">
+    <a href="#home" class="mobile-nav-item" (click)="closeMobileMenu()">Home</a>
+    <a href="#products" class="mobile-nav-item" (click)="closeMobileMenu()">Products Catalog</a>
+    <a href="#posters" class="mobile-nav-item" (click)="closeMobileMenu()">Launch Flyers</a>
+    <a href="#story" class="mobile-nav-item" (click)="closeMobileMenu()">Our Dream Story</a>
+    <a href="#reviews" class="mobile-nav-item" (click)="closeMobileMenu()">Customer Reviews</a>
+    <a href="#faqs" class="mobile-nav-item" (click)="closeMobileMenu()">FAQ</a>
+    <div class="mobile-actions">
+      <button class="btn-whatsapp-mobile" (click)="orderGeneralViaWhatsApp(); closeMobileMenu()">
+        💬 Order via WhatsApp ({{ phoneDisplay }})
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="launch-pill">
+        <span class="sparkle">✨</span>
+        <span>FRESH LAUNCH • FROM MY HOME TO YOUR HOME</span>
+        <span class="sparkle">✨</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-highlight">Naturally Homemade,</span>
+        <span class="hero-title-sub">Lovingly Made</span>
+      </h1>
+
+      <p class="hero-tamil-motto">
+        சுத்தமான நலம் தரும் வீட்டு தயாரிப்புகள் • நல்ல உணவு, நல்ல ஆரோக்கியம், மகிழ்ச்சியான வாழ்வு
+      </p>
+
+      <p class="hero-lead">
+        Handcrafted authentic masalas, nutrient-rich health mixes, herbal hair & skin care, sun-cured pickles, and gentle botanical soaps. Prepared in small batches with zero chemicals and total motherly love.
+      </p>
+
+      <div class="dream-banner">
+        <span class="dream-icon">💖</span>
+        <div class="dream-content">
+          <span class="dream-quote">"Please support my small dream"</span>
+          <span class="dream-sub">Every order directly supports our family-run home kitchen.</span>
+        </div>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#products" class="btn btn-primary">
+          <span>Explore All Products</span>
+          <span class="btn-arrow">↓</span>
+        </a>
+        <button class="btn btn-whatsapp" (click)="orderGeneralViaWhatsApp()">
+          <span class="wa-icon-svg">💬</span>
+          <span>DM for Price List & Orders</span>
+        </button>
+      </div>
+
+      <div class="delivery-highlight-badge">
+        <span class="truck-icon">🚚</span>
+        <strong>All state Delivery Available</strong>
+        <span class="delivery-sep">|</span>
+        <span>Fast Courier to your doorstep</span>
+      </div>
+    </div>
+
+    <!-- Visual Poster Hero Card -->
+    <div class="hero-visual">
+      <div class="poster-preview-card">
+        <div class="poster-header-bar">
+          <span class="poster-tag">OFFICIAL LAUNCH POSTERS</span>
+          <span class="tap-hint">Tap to zoom</span>
+        </div>
+        <div class="poster-dual-grid">
+          <div class="poster-thumb" (click)="openFlyerModal('/images/poster-1.jpeg')">
+            <img src="/images/poster-1.jpeg" alt="TJ Homemade Products Launch Poster 1" loading="eager" />
+            <div class="poster-overlay">
+              <span>🔍 View Poster 1</span>
+            </div>
+          </div>
+          <div class="poster-thumb" (click)="openFlyerModal('/images/poster-2.jpeg')">
+            <img src="/images/poster-2.jpeg" alt="TJ Homemade Products Launch Poster 2" loading="eager" />
+            <div class="poster-overlay">
+              <span>🔍 View Poster 2</span>
+            </div>
+          </div>
+        </div>
+        <div class="poster-footer-bar">
+          <div class="quick-contact">
+            <span class="qc-label">Direct Order / Inquiry:</span>
+            <a [href]="'tel:' + phone" class="qc-phone">📞 {{ phoneDisplay }}</a>
+          </div>
+          <div class="social-tags">
+            <span class="insta-tag">📷 &#64;{{ instagramHandle }}</span>
+            <span class="yt-tag">▶ {{ youtubeChannel }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Purity Pillars -->
+<section class="pillars-section">
+  <div class="section-container">
+    <div class="pillars-grid">
+      @for (pillar of purityBadges; track pillar.title) {
+        <div class="pillar-card">
+          <div class="pillar-icon">{{ pillar.icon }}</div>
+          <h3 class="pillar-title">{{ pillar.title }}</h3>
+          <p class="pillar-desc">{{ pillar.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Products Catalog Section -->
+<section id="products" class="products-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-badge">100% PURE & HOMEMADE</div>
+      <h2 class="section-title">Our Handcrafted Collection</h2>
+      <p class="section-subtitle">
+        Authentic flavors, nourishing herbs, and traditional wellness for your entire family.
+      </p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs-wrapper">
+      <div class="category-tabs">
+        @for (category of categories; track category.id) {
+          <button 
+            class="cat-tab" 
+            [class.active]="activeCategory === category.id"
+            [ngClass]="category.badgeClass"
+            (click)="setActiveCategory(category.id)">
+            <span class="cat-icon">{{ category.icon }}</span>
+            <div class="cat-names">
+              <span class="cat-english">{{ category.name }}</span>
+              <span class="cat-tamil">{{ category.tamilName }}</span>
+            </div>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      @for (product of filteredProducts; track product.id) {
+        <div class="product-card" [ngClass]="'cat-' + product.category">
+          <div class="product-card-top">
+            <div class="badge-wrapper">
+              <span class="product-badge" *ngIf="product.badge">{{ product.badge }}</span>
+              <span class="product-unit" *ngIf="product.unitNote">{{ product.unitNote }}</span>
+            </div>
+            <div class="product-highlight" *ngIf="product.highlight">
+              <span>✨ {{ product.highlight }}</span>
+            </div>
+          </div>
+
+          <div class="product-card-body">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <div class="product-tamil">{{ product.tamilName }}</div>
+            <p class="product-desc">{{ product.description }}</p>
+
+            <div class="benefits-box" *ngIf="product.benefits && product.benefits.length">
+              <span class="benefits-label">Key Highlights:</span>
+              <ul class="benefits-list">
+                @for (b of product.benefits; track b) {
+                  <li>{{ b }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+
+          <div class="product-card-footer">
+            <div class="inquiry-status" *ngIf="isInCart(product.id)">
+              <div class="qty-control">
+                <button class="qty-btn" (click)="updateQuantity(product.id, -1)" title="Decrease">-</button>
+                <span class="qty-val">{{ getCartItemQuantity(product.id) }} in list</span>
+                <button class="qty-btn" (click)="updateQuantity(product.id, 1)" title="Increase">+</button>
+              </div>
+            </div>
+
+            <div class="action-buttons-row">
+              <button 
+                class="btn-add-tray" 
+                *ngIf="!isInCart(product.id)" 
+                (click)="addToCart(product)">
+                <span>+ Add to Inquiry</span>
+              </button>
+
+              <button 
+                class="btn-direct-wa" 
+                (click)="orderProductViaWhatsApp(product)"
+                title="Direct WhatsApp Inquiry">
+                <span class="btn-wa-sym">💬</span>
+                <span>Enquire Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Quick WhatsApp Price List Banner -->
+    <div class="price-list-callout">
+      <div class="plc-content">
+        <h3>Need the latest Weight & Price List?</h3>
+        <p>Send a quick WhatsApp message to get packaging sizes (100g, 250g, 500g, 1kg) and prices directly to your phone.</p>
+      </div>
+      <button class="btn btn-whatsapp-large" (click)="orderGeneralViaWhatsApp()">
+        <span>💬 WhatsApp for Price List: {{ phoneDisplay }}</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Launch Flyers Showcase Section -->
+<section id="posters" class="posters-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-badge">OFFICIAL BROCHURE</div>
+      <h2 class="section-title">Launch Posters & Complete Range</h2>
+      <p class="section-subtitle">
+        Inspect the original flyers from our fresh launch announcement. Click any image to view in full resolution.
+      </p>
+    </div>
+
+    <div class="posters-grid">
+      <!-- Poster 1 -->
+      <div class="poster-card" (click)="openFlyerModal('/images/poster-1.jpeg')">
+        <div class="poster-image-container">
+          <img src="/images/poster-1.jpeg" alt="TJ Homemade Products Launch Flyer 1" loading="lazy" />
+          <div class="poster-zoom-hint">
+            <span>🔎 Click to View Full Size</span>
+          </div>
+        </div>
+        <div class="poster-card-caption">
+          <h3>Poster 1: Fresh Launch</h3>
+          <p>Herbal & Beauty Care, Health & Taste mixes, and Homemade Masalas.</p>
+        </div>
+      </div>
+
+      <!-- Poster 2 -->
+      <div class="poster-card" (click)="openFlyerModal('/images/poster-2.jpeg')">
+        <div class="poster-image-container">
+          <img src="/images/poster-2.jpeg" alt="TJ Homemade Products Launch Flyer 2" loading="lazy" />
+          <div class="poster-zoom-hint">
+            <span>🔎 Click to View Full Size</span>
+          </div>
+        </div>
+        <div class="poster-card-caption">
+          <h3>Poster 2: Complete Expanded Range</h3>
+          <p>Including All Type of Pickles, Handmade Soaps, Curry Leaf & Moringa Podis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Founder's Story Section -->
+<section id="story" class="story-section">
+  <div class="section-container">
+    <div class="story-card">
+      <div class="story-visual">
+        <div class="story-badge-circle">
+          <span class="badge-emoji">🏡</span>
+          <span class="badge-txt">Pure Heart & Passion</span>
+        </div>
+        <div class="story-leaf-deco">🌿</div>
+      </div>
+      <div class="story-content">
+        <div class="story-tag">OUR JOURNEY</div>
+        <h2 class="story-title">
+          "Please Support My Small Dream"
+        </h2>
+        <div class="story-tamil">
+          என் வீட்டிலிருந்து உங்கள் வீட்டிற்கு அன்புடன்...
+        </div>
+        <p class="story-text">
+          <strong>TJ HOMEMADE PRODUCTS</strong> was born right in our home kitchen out of a deep passion to protect our families from harmful chemicals, synthetic food colors, artificial taste boosters, and harsh chemical cosmetics.
+        </p>
+        <p class="story-text">
+          Every single masala is roasted slowly in traditional pans to bring out deep, authentic flavours. Our herbal bath powders and hair cleansers are formulated according to time-tested ancestral recipes that our grandmothers trusted for generations.
+        </p>
+        <p class="story-text">
+          When you order from us, you are directly helping a small home enterprise grow. We promise uncompromised purity, unmatched hygiene, and honest homemade goodness in every single pack.
+        </p>
+        <div class="story-author">
+          <div class="author-sign">TJ Homemade Products</div>
+          <div class="author-role">Founder & Homemaker • Naturally Homemade, Lovingly Made</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customer Reviews Section -->
+<section id="reviews" class="reviews-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-badge">CUSTOMER LOVE</div>
+      <h2 class="section-title">Words from Happy Homes</h2>
+      <p class="section-subtitle">Real experiences from families across Tamil Nadu and neighbouring states.</p>
+    </div>
+
+    <div class="reviews-grid">
+      @for (rev of testimonials; track rev.name) {
+        <div class="review-card">
+          <div class="review-stars">
+            <span>⭐⭐⭐⭐⭐</span>
+            <span class="verified-tag">{{ rev.tag }}</span>
+          </div>
+          <p class="review-comment">"{{ rev.comment }}"</p>
+          <div class="review-author-row">
+            <div class="author-avatar">{{ rev.name.charAt(0) }}</div>
+            <div class="author-meta">
+              <div class="author-name">{{ rev.name }}</div>
+              <div class="author-city">📍 {{ rev.location }}</div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQs Section -->
+<section id="faqs" class="faqs-section">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-badge">QUESTIONS & ANSWERS</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about our ingredients, delivery, and orders.</p>
+    </div>
+
+    <div class="faqs-grid">
+      @for (faq of faqs; track faq.question) {
+        <div class="faq-card">
+          <h3 class="faq-question">
+            <span class="faq-q-icon">Q.</span>
+            <span>{{ faq.question }}</span>
+          </h3>
+          <p class="faq-answer">{{ faq.answer }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Order Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="section-container">
+    <div class="contact-card">
+      <div class="contact-content">
+        <span class="contact-badge">DIRECT CONTACT</span>
+        <h2 class="contact-heading">Ready to Experience Pure Homemade Goodness?</h2>
+        <p class="contact-sub">
+          Reach out to us on WhatsApp for orders, custom spice requests, or any questions. We are always happy to serve you!
+        </p>
+        
+        <div class="contact-channels">
+          <a [href]="'https://wa.me/91' + phone" target="_blank" class="contact-channel-item wa-channel">
+            <span class="channel-icon">💬</span>
+            <div class="channel-info">
+              <span class="ch-title">WhatsApp & Phone Orders</span>
+              <span class="ch-val">{{ phoneDisplay }}</span>
+            </div>
+          </a>
+
+          <a [href]="'https://www.instagram.com/' + instagramHandle" target="_blank" class="contact-channel-item ig-channel">
+            <span class="channel-icon">📷</span>
+            <div class="channel-info">
+              <span class="ch-title">Instagram Updates</span>
+              <span class="ch-val">&#64;{{ instagramHandle }}</span>
+            </div>
+          </a>
+
+          <div class="contact-channel-item yt-channel">
+            <span class="channel-icon">▶</span>
+            <div class="channel-info">
+              <span class="ch-title">YouTube Channel</span>
+              <span class="ch-val">{{ youtubeChannel }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-prompt-box">
+          <button class="btn btn-whatsapp-huge" (click)="orderGeneralViaWhatsApp()">
+            <span>💬 Send Message on WhatsApp ({{ phoneDisplay }})</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="section-container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="f-logo-text">TJ</span>
+          <span class="f-logo-leaf">🌿</span>
+          <span class="f-brand-title">HOMEMADE PRODUCTS</span>
+        </div>
+        <p class="f-tagline">Naturally Homemade, Lovingly Made ♥</p>
+        <p class="f-motto">100% Pure • Homemade • No Chemicals • All State Delivery Available</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Product Range</h4>
+        <ul>
+          <li><a href="#products" (click)="setActiveCategory('masalas')">Homemade Masalas & Podis</a></li>
+          <li><a href="#products" (click)="setActiveCategory('health')">Health Mix (Sathu Maavu)</a></li>
+          <li><a href="#products" (click)="setActiveCategory('herbal')">Herbal Care & Hair Oils</a></li>
+          <li><a href="#products" (click)="setActiveCategory('pickles')">All Type of Pickles</a></li>
+          <li><a href="#products" (click)="setActiveCategory('soaps')">Handmade Botanical Soaps</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Quick Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#posters">Launch Flyers</a></li>
+          <li><a href="#story">Support My Dream</a></li>
+          <li><a href="#reviews">Customer Reviews</a></li>
+          <li><a href="#faqs">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact-col">
+        <h4>Connect & Follow</h4>
+        <p><strong>WhatsApp Orders:</strong> <a [href]="'tel:' + phone">{{ phoneDisplay }}</a></p>
+        <p><strong>Instagram:</strong> <a [href]="'https://www.instagram.com/' + instagramHandle" target="_blank">&#64;{{ instagramHandle }}</a></p>
+        <p><strong>YouTube:</strong> {{ youtubeChannel }}</p>
+        <div class="footer-note">
+          "Please support my small dream ♥"
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 TJ Homemade Products. All rights reserved. Crafted with care and pure love.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Order Bar -->
+<div class="floating-wa-bar" [class.highlight]="cartTotalCount > 0">
+  <button class="floating-wa-btn" (click)="cartTotalCount > 0 ? toggleCartModal() : orderGeneralViaWhatsApp()">
+    <span class="f-wa-icon">💬</span>
+    <span class="f-wa-text" *ngIf="cartTotalCount === 0">WhatsApp Order</span>
+    <span class="f-wa-text" *ngIf="cartTotalCount > 0">Inquiry List ({{ cartTotalCount }})</span>
+  </button>
+</div>
+
+<!-- Lightbox Modal for Launch Flyers -->
+<div class="lightbox-backdrop" *ngIf="activeFlyerModal" (click)="closeFlyerModal()">
+  <div class="lightbox-dialog" (click)="$event.stopPropagation()">
+    <button class="lightbox-close" (click)="closeFlyerModal()" aria-label="Close modal">✕</button>
+    <div class="lightbox-body">
+      <img [src]="activeFlyerModal" alt="Launch Flyer Full Resolution" class="lightbox-img" />
+    </div>
+    <div class="lightbox-footer">
+      <button class="btn btn-whatsapp" (click)="orderGeneralViaWhatsApp()">
+        <span>💬 Order on WhatsApp: {{ phoneDisplay }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart / Inquiry Drawer Modal -->
+<div class="cart-backdrop" *ngIf="showCartModal" (click)="toggleCartModal()">
+  <div class="cart-drawer" (click)="$event.stopPropagation()">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <span class="cart-head-icon">🛍️</span>
+        <h3>Your Inquiry List ({{ cartTotalCount }} items)</h3>
+      </div>
+      <button class="cart-close-btn" (click)="toggleCartModal()">✕</button>
+    </div>
+
+    <div class="cart-content">
+      <div class="empty-cart-view" *ngIf="cart.length === 0">
+        <div class="empty-icon">🌿</div>
+        <h4>Your list is currently empty</h4>
+        <p>Browse our products and click "+ Add to Inquiry" to easily send an inquiry via WhatsApp.</p>
+        <button class="btn btn-primary" (click)="toggleCartModal()">Browse Products</button>
+      </div>
+
+      <div class="cart-items-list" *ngIf="cart.length > 0">
+        @for (item of cart; track item.product.id) {
+          <div class="cart-row">
+            <div class="cart-row-details">
+              <h4>{{ item.product.name }}</h4>
+              <span class="cart-row-tamil">{{ item.product.tamilName }}</span>
+              <span class="cart-row-cat">{{ item.product.unitNote || item.product.category }}</span>
+            </div>
+
+            <div class="cart-row-actions">
+              <div class="cart-qty-toggle">
+                <button (click)="updateQuantity(item.product.id, -1)">-</button>
+                <span>{{ item.quantity }}</span>
+                <button (click)="updateQuantity(item.product.id, 1)">+</button>
+              </div>
+              <button class="cart-remove-btn" (click)="removeFromCart(item.product.id)" title="Remove item">🗑️</button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="cart-footer" *ngIf="cart.length > 0">
+      <div class="cart-summary-text">
+        <span>Click below to send this list to our WhatsApp:</span>
+      </div>
+      <button class="btn-whatsapp-cart" (click)="sendWhatsAppCart(); toggleCartModal()">
+        <span>💬 Send Inquiry to WhatsApp (+91 {{ phone }})</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<router-outlet />
