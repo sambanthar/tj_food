@@ -1,0 +1,81 @@
+name: Auto Release & Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "release-and-pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    name: Build & Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Angular Application
+        run: npm run build -- --configuration production
+
+      - name: Generate Release Tag & Name
+        id: vars
+        run: |
+          TAG="v1.0.${{ github.run_number }}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "title=Release $TAG - TJ Homemade Products" >> $GITHUB_OUTPUT
+
+      - name: Package Distribution Zip
+        run: |
+          mkdir -p release-assets
+          cd dist/tj-food-website/browser
+          zip -r ../../../release-assets/tj-food-website-build-${{ steps.vars.outputs.tag }}.zip .
+          cd ../../..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag }}
+          name: ${{ steps.vars.outputs.title }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: release-assets/tj-food-website-build-${{ steps.vars.outputs.tag }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/tj-food-website/browser
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    needs: build-and-release
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
